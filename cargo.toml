@@ -1,0 +1,7 @@
+[package]
+
+name = "ds_rex"
+version = "0.0.1"
+authors = [ "kiwistrongis <kiwistrongis@gmail.com>"]
+
+[dependencies]
