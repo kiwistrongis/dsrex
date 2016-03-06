@@ -1,4 +1,4 @@
-#![crate_name="ds_rex"]
+#![crate_name="dsrex"]
 #![crate_type="lib"]
 
 // library imports
@@ -8,4 +8,6 @@
 //pub use prelude::*;
 
 // modules
-//pub mod asdf;
+pub mod apriori;
+pub mod pcy;
+pub mod util;

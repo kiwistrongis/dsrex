@@ -1,6 +1,6 @@
 [package]
 
-name = "ds_rex"
+name = "dsrex"
 version = "0.0.1"
 authors = [ "kiwistrongis <kiwistrongis@gmail.com>"]
 

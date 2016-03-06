@@ -16,8 +16,7 @@ community/cargo 0.8.0-1
     Rust package manager
 
 community/rust 1:1.6.0-1
-    Systems programming language focused on safety, speed and
-    concurrency
+    Systems programming language focused on safety, speed and concurrency
 ```
 
 ### Building
