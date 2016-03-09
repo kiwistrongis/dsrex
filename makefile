@@ -18,11 +18,19 @@ ci:
 
 # tests
 test: test-apriori
-test-all:
-	cargo test
 
 test-apriori:
-	cargo run --bin test_apriori
+	cargo build
+	time -p target/debug/test_apriori data/subset0.dat
 
 test-pcy:
-	cargo run --bin test_pcy
+	cargo build
+	time -p target/debug/test_pcy data/subset0.dat
+
+run-apriori:
+	cargo build --release
+	time -p target/release/apriori data/retail.dat
+
+run-pcy:
+	cargo build --release
+	time -p target/release/pcy data/retail.dat

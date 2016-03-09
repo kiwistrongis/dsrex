@@ -4,7 +4,6 @@ extern crate dsrex;
 // std lib uses
 use std::env;
 use std::fs::File;
-use std::str::FromStr;
 
 // dsrex uses
 use dsrex::pcy::ItemSetMiner;
@@ -19,9 +18,11 @@ fn main(){
 	let mut args = env::args().skip( 1);
 	while let Some( arg) = args.next() {
 		if arg == "-b" {
-			buffer = usize::from_str( &*args.next().unwrap()).unwrap();}
+			let next_arg = &*args.next().unwrap();
+			buffer = next_arg.parse().unwrap();}
 		else if arg == "-s" {
-			support = f32::from_str( &*args.next().unwrap()).unwrap();}
+			let next_arg = &*args.next().unwrap();
+			support = next_arg.parse().unwrap();}
 		else {
 			filename = arg;
 			break;}}
@@ -29,5 +30,17 @@ fn main(){
 	// run algorithm
 	let file = File::open( filename).unwrap();
 	let mut miner = ItemSetMiner::new( file, buffer, support);
-	miner.run();
+	miner.debug = true;
+	let result_map = miner.run();
+
+	// print top 100 pairs over support threshold
+	let mut pairs : Vec<((u32, u32), u32)> = Vec::new();
+	pairs.extend( result_map.iter().map(
+		| (&(x, y), &count) | ((x, y), count)));
+	pairs.sort_by(
+		| &( _, a_count), &( _, b_count)| a_count.cmp( &b_count));
+	println!( "count: {}", pairs.len());
+	println!( "(pair, support)");
+	for pair in pairs.iter().rev().take( 10) {
+		println!( "{:?}", pair);}
 }

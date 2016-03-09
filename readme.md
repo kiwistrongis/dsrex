@@ -1,8 +1,8 @@
 ## Datasaurus Rex
 Some university's big data project.
 
-Author: Kalev Kalda Sikes
-Id: 100425828
+Author: Kalev Kalda Sikes  
+Id: 100425828  
 Dt: 2015-03-05
 
 

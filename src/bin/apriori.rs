@@ -11,7 +11,7 @@ use dsrex::apriori::ItemSetMiner;
 fn main(){
 	// default arg values
 	let mut buffer = 16;
-	let mut support = 0.1;
+	let mut support = 0.01;
 	let mut filename = "data/retail.dat".to_string();
 
 	// parse args
@@ -30,7 +30,6 @@ fn main(){
 	// run algorithm
 	let file = File::open( filename).unwrap();
 	let mut miner = ItemSetMiner::new( file, buffer, support);
-	miner.debug = true;
 	let result_map = miner.run();
 
 	// print top 100 pairs over support threshold
@@ -39,8 +38,6 @@ fn main(){
 		| (&(x, y), &count) | ((x, y), count)));
 	pairs.sort_by(
 		| &( _, a_count), &( _, b_count)| a_count.cmp( &b_count));
-	println!( "count: {}", pairs.len());
-	println!( "(pair, support)");
-	for pair in pairs.iter().rev().take( 10) {
-		println!( "{:?}", pair);}
+	for &( pair, count) in pairs.iter().rev().take( 100) {
+		println!( "{:?}, {}", pair, count);}
 }

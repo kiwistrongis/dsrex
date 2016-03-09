@@ -1,6 +1,7 @@
 
 // std lib uses
 use std::fs::File;
+use std::hash::{ Hash, Hasher, SipHasher};
 use std::io::prelude::*;
 use std::io::{ SeekFrom, BufReader};
 use std::str::FromStr;
@@ -50,3 +51,8 @@ pub fn sleep_nanos( ns: u32){
 
 pub fn sleep_millis( ms: u32){
 	sleep( Duration::new( 0, ms * 1000))}
+
+pub fn hash<T: Hash>( t : &T) -> u64 {
+	let mut hasher = SipHasher::new();
+	t.hash( &mut hasher);
+	hasher.finish()}
