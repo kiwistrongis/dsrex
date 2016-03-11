@@ -3,5 +3,3 @@
 name = "dsrex"
 version = "1.0.0"
 authors = [ "kiwistrongis <kiwistrongis@gmail.com>"]
-
-[dependencies]
