@@ -1,33 +1,35 @@
 #!/bin/bash
 
+# vars
+data_file="data/retail.dat"
+results_dir="results/asdf"
+algos="apriori pcy"
+support="0.1 0.05 0.02 0.01 0.005 0.002 0.001"
+
 # time vars
 time="/usr/bin/time"
 time_format="%e, %U, %S, %P"
-time_output="results/time.csv"
-
-# vars
-data_file="data/retail.dat"
-algos="apriori pcy"
-supports="0.05 0.01 0.002"
 
 # parse args
-echo -e "$1"
 if [ $# -gt 0 ]; then
 	algos=$1
-	time_output="results/${algo}_time.csv"
+	shift
+fi
+if [ $# -gt 0 ]; then
+	supports=$@
 fi
 
 # for each algorithm
 for algo in $algos; do
 	# clear previous output
+	time_output="${results_dir}/${algo}_time.csv"
 	echo -n > $time_output
 	
 	# for each support
 	for support in $supports; do
 		# vars
 		command=target/release/$algo
-		output=results/${algo}_${support}.dat
-		time_output="results/${algo}_time.csv"
+		output=${results_dir}/${algo}_${support}.dat
 
 		# run algorithm
 		echo -e "timing $algo for support $support..."

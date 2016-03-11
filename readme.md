@@ -20,10 +20,22 @@ community/rust 1:1.6.0-1
 ```
 
 ### Building
-asdf
+To build the project for debugging, a normal `cargo build` is sufficient. Before running any experiments, however, one must build an optimized 'release'. This can be done with `cargo build --release`
 
 ### Running
-asdf
+The two main executables are `target/release/apriori` and `target/release/pcy` ( or alternatively `target/debug/*`). There are also two other executables `test_apriori` and `test_pcy`, which have more verbose output and slightly 'lighter' default settings, which are intended for code-testing purposes.
 
-### Benchmarks
-asdf
+Each executable should be invoked in the following format:
+
+```
+$executable [ -b buffer_size ] [ -s support_threshold ] [ data_file ]
+```
+
+For `apriori` and `pcy` the default values of these args are `buffer_size=16`, `support_threshold=0.01`, and `datafile="data/retail.dat"`.
+
+### Experiments
+There are two main experiments - `src/support_exp.sh` and `src/subset_exp.sh`. These can be invoked directly, or with args specifying the algorithm, support thresholds, or data files to run the experiment on. For details, see the scripts themselves.
+
+Additionally, there are two more scripts - `src/run_subset_exp.sh` and `src/run_support_exp.sh`, which were written for running batches of experiments on a four-core machine.
+
+Finally, if on has the netflix dataset located at `data/netflix.dat`, one can use the `src/run_netflix.sh` script for running the `pcy` executable against it.

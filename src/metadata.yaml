@@ -1,0 +1,11 @@
+
+---
+title: CSCI 4030U Big Data Analytics Project 1
+author: "Auth: Kalev Kalda Sikes :: `100425828`"
+date: "Date: `7e030a` / `2016-03-11`"
+header-includes:
+    - \usepackage{fancyhdr}
+    - \pagestyle{fancy}
+    - \fancyfoot[CO,CE]{Kalev Kalda Sikes // 100425828}
+    - \fancyfoot[LE,RO]{\thepage}
+---
